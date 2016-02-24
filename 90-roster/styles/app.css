@@ -1,10 +1,14 @@
+/** {
+  border:1px solid rebeccapurple;
+}*/
+
 .player-card {
   display: inline-block;
   border: 1px solid gray;
   align-content: center;
   width: 230px;
   padding: 10px;
-  margin: 5px;
+  /*margin: 5px;*/
 }
 
 .player-card p {
@@ -18,4 +22,12 @@
 
 .panel-body {
   display: inline-block;
+}
+
+.add-player {
+  margin-top: 2em;
+}
+
+.add-player-body {
+  width: 100%;
 }
