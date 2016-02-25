@@ -11,6 +11,9 @@
 
 <body>
   <div class="container-fluid" ng-controller="RosterController">
+    <button type="button" class="btn btn-primary" ng-click="loadPlayers()">Load Players</button>
+    <button type="button" class="btn btn-primary" ng-click="setPlayers()">Set Players</button>
+    
     <div class="panel panel-default roster">
       <div class="panel-heading">My NFL Roster</div>
       <div class="panel-body inline">
@@ -18,9 +21,9 @@
         <div class="player-card" ng-repeat="player in players">
           <button type="button" class="btn btn-danger center-block" ng-click="removePlayer($index)">Remove</button>
           <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/">
-          <p>Name: {{player.name}}</p>
+          <p>Name: {{player.fullname}}</p>
           <p>Position: {{player.position}}</p>
-          <p>Number: {{player.number}}</p>
+          <p>Number: {{player.jersey}}</p>
         </div>
         
         <!-- FORM -->
@@ -32,17 +35,17 @@
               
               <div class="form-group">
                 <label for="playerName">Player Name</label>
-                <input type="text" class="form-control" id="playerName" placeholder="Player Name" ng-model="playerName">
+                <input type="text" class="form-control" id="playerName" placeholder="Player Name" ng-model="fullname">
               </div>
               
               <div class="form-group">
                 <label for="playerPosition">Player Position</label>
-                <input type="text" class="form-control" id="playerPosition" placeholder="Player Position" ng-model="playerPosition">
+                <input type="text" class="form-control" id="playerPosition" placeholder="Player Position" ng-model="position">
               </div>
               
               <div class="form-group">
                 <label for="playerNumber">Player Number</label>
-                <input type="number" class="form-control" id="playerNumber" placeholder="Player Number" ng-model="playerNumber">
+                <input type="number" class="form-control" id="playerNumber" placeholder="Player Number" ng-model="jersey">
               </div>              
               <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Player</div></button>
             </form>
@@ -58,6 +61,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <!-- app -->
   <script src="app/app.js"></script>
+  <script src="app/services/data.service.js"></script>
   <script src="app/controller/controller.js"></script>
 </body>
 
