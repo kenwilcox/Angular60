@@ -1,6 +1,7 @@
 app.factory('DataService', function ($http) {
   var playerList = [];
   var service = {
+    
     loadPlayers: function () {
       $http.get("http://bcw-getter.herokuapp.com/?url=http%3A%2F%2Fapi.cbssports.com%2Ffantasy%2Fplayers%2Flist%3Fversion%3D3.0%26SPORT%3Dfootball%26response_format%3Djson")
         .success(function (data) {
@@ -36,6 +37,16 @@ app.factory('DataService', function ($http) {
       var players = [];
       for (var i = 0; i < playerList.length; i++) {
         if (playerList[i].position === position) {
+          players.push(playerList[i]);
+        }
+      }
+      return players;
+    },
+    
+    getPlayersByStuff: function (field, value) {
+      var players = [];
+      for (var i = 0; i < playerList.length; i++) {
+        if (playerList[i][field] === value) {
           players.push(playerList[i]);
         }
       }

@@ -22,12 +22,21 @@ app.controller('RosterController', function ($scope, DataService) {
     $scope.players = DataService.getAllPlayers();
   }
 
+  $scope.getNextPlayers = function (startingIndex, totalCount) {
+    var playersToReturn = [];
+    for(var i = startingIndex; i < startingIndex + totalCount; i++) {
+      playersToReturn.push($scope.players[i]);
+    } 
+    return playersToReturn;
+  }
+  
   $scope.addPlayer = function () {
     
     var player = {
       fullname: $scope.fullname,
       position: $scope.position,
       jersey: $scope.jersey,
+      photo: "http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/"
     };
 
     $scope.players.push(player);
