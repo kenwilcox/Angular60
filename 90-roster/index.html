@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Document</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles/app.css">
 </head>
 
 <body>
   <div class="container-fluid" ng-controller="RosterController">
     <button type="button" class="btn btn-primary" ng-click="loadPlayers()">Load Players</button>
-    <button type="button" class="btn btn-primary" ng-click="setPlayers()">Set Players</button>
+    <button type="button" class="btn btn-primary" ng-click="setPlayers()" ng-disabled="!hasPlayers()">Set Players</button>
+    <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingPlayers()"></i>
+    <p>Players: {{playerCount() | number}}</p>
     <input type="text" class="form-control" ng-model="search">
     
     <div class="panel panel-default roster">
@@ -21,7 +24,7 @@
 
         <div class="player-card" ng-repeat="player in players | filter: search">
           <button type="button" class="btn btn-danger center-block" ng-click="removePlayer($index)">Remove</button>
-          <img ng-src="{{player.photo}}">
+          <img hires="{{player.photo}}" src="https://auth.cbssports.com/images/players/unknown-player-170x170.png">
           <p>Name: {{player.fullname}}</p>
           <p>Position: {{player.position}}</p>
           <p>Number: {{player.jersey}}</p>
@@ -64,6 +67,7 @@
   <script src="app/app.js"></script>
   <script src="app/services/data.service.js"></script>
   <script src="app/controller/controller.js"></script>
+  <script src="app/directive/hires.js"></script>
 </body>
 
 </html>

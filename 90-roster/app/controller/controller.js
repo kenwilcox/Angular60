@@ -16,7 +16,19 @@ app.controller('RosterController', function ($scope, DataService) {
 
   $scope.loadPlayers = function () {
     DataService.loadPlayers();
-  };
+  }
+  
+  $scope.loadingPlayers = function () {
+    return DataService.loadingPlayers();
+  }
+  
+  $scope.hasPlayers = function () {
+    return DataService.playerCount() > 0;
+  }
+  
+  $scope.playerCount = function () {
+    return $scope.players.length || DataService.playerCount();
+  }
 
   $scope.setPlayers = function () {
     $scope.players = DataService.getAllPlayers();
