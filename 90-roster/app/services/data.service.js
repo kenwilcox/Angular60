@@ -1,4 +1,4 @@
-app.factory('DataService', function ($http) {
+angular.module('myRoster').factory('DataService', function ($http) {
   var playerList = [];
   var loading = false;
 

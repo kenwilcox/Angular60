@@ -1,4 +1,4 @@
-app.controller('RosterController', function ($scope, DataService) {
+angular.module('myRoster').controller('RosterController', function ($scope, DataService) {
   $scope.players = [];
   var playerKey = 'players';
 

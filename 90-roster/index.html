@@ -24,7 +24,7 @@
 
         <div class="player-card" ng-repeat="player in players | filter: search">
           <button type="button" class="btn btn-danger center-block" ng-click="removePlayer($index)">Remove</button>
-          <img hires="{{player.photo}}" src="https://auth.cbssports.com/images/players/unknown-player-170x170.png">
+          <img kwreplace="{{player.photo}}" src="https://auth.cbssports.com/images/players/unknown-player-170x170.png">
           <p>Name: {{player.fullname}}</p>
           <p>Position: {{player.position}}</p>
           <p>Number: {{player.jersey}}</p>
@@ -67,7 +67,7 @@
   <script src="app/app.js"></script>
   <script src="app/services/data.service.js"></script>
   <script src="app/controller/controller.js"></script>
-  <script src="app/directive/hires.js"></script>
+  <script src="app/directive/kw-replace.js"></script>
 </body>
 
 </html>
