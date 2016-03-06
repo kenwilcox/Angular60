@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo</title>
+</head>
+<body ng-controller="TodoCtrl">
+  <input type="text" ng-model="item" placeholder="What todo...">
+  <button ng-click="add()">Add</button>
+  
+  <ul>
+    <li ng-repeat="item in items | orderBy:'toString()'">
+      {{item}}
+    </li>
+  </ul>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
