@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Pie</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body ng-controller="MainController">
+    <div class="container">
+        {{1+1}}
+        <br>
+        <input type="text" ng-model="name">
+        <br>
+        <button ng-click="greet()">Greet</button>
+        <br> {{greetings}}
+        <ul>
+            <li ng-repeat="greeting in greetings track by $index">Greeting #{{$index+1}}: {{greeting}}</li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.6.1/lodash.js"></script>
+    
+    <script src="app/app.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+    <script src="app/services/main.service.js"></script>
+    <script src="app/services/angular.lodash.js"></script>
+</body>
+
+</html>
