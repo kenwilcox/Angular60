@@ -1,0 +1,1 @@
+Silly Example using [LocalForage](http://mozilla.github.io/localForage/) and [angular-localForage](http://angular-js.in/localforage/)
