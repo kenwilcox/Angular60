@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Local Forage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body ng-controller="MainController as vm">
+    <div class="container">
+        {{1+1}}
+        <br>
+        <input type="text" ng-model="vm.name">
+        <br>
+
+        <br>
+        <input type="text" ng-model="vm.yourName">
+        <br>
+        <button ng-click="vm.setItem('yourName', vm.yourName)">SetItem</button>        
+        <button ng-click="vm.getItem('yourName','yourName')">GetItem</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.4.0/localforage.js"></script>
+    
+    <script src="app/app.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+    <script src="app/modules/angular-localForage.js"></script>    
+</body>
+
+</html>
