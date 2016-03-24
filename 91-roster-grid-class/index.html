@@ -1,0 +1,36 @@
+<!DOCTYPE html ng>
+<html lang="en" ng-app="myRoster">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.1/ui-grid.min.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+
+<body>
+  <div class="container-fluid" ng-controller="RosterController">
+    <button type="button" class="btn btn-primary" ng-click="loadPlayers()">Load Players</button>
+    <button type="button" class="btn btn-primary" ng-click="setPlayers()" ng-disabled="!hasPlayers()">Set Players</button>
+    <i class="fa fa-spinner fa-pulse fa-2x" ng-show="loadingPlayers()"></i>
+    
+    <div ui-grid="gridRoster" class="myGrid"></div>     
+  </div>
+
+  <!-- lib -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.1/ui-grid.min.js"></script>
+  
+  <!-- app -->
+  <script src="app/app.js"></script>
+  <script src="app/services/data.service.js"></script>
+  <script src="app/controller/controller.js"></script>
+  <script src="app/directive/kw-replace.js"></script>
+</body>
+
+</html>
