@@ -368,4 +368,317 @@ var obj = {a: 100, b: 200},
   myVar = 10;
 delete obj.a
 console.log(obj);
-console.log(myVar);
+console.log(myVar); // no error - "just works"
+
+
+'use strict';
+var obj = {a: 100, b: 200},
+  myVar = 10;
+delete obj.a
+console.log(obj);
+console.log(myVar); // <-- throws an error
+
+
+
+
+
+// Duplicates
+function x(a, b, a) {
+    console.log(a); // <-- outputs 3
+}
+x(1, 2, 3);
+
+
+'use strict';
+function x(a, b, a) {
+    console.log(a); // <-- function may not have duplicate parameter names
+}
+x(1, 2, 3);
+
+
+
+
+// Number Types
+var x = 120,
+    y = 012,
+    z = 002;
+console.log(x + y + z); // <-- 132
+
+'use strict';
+var x = 120,
+    y = 012,
+    z = 002;
+console.log(x + y + z); // <-- error octal
+
+// If I really want to use octal
+'use strict';
+var x = 120,
+    y = parseInt(12, 8),
+    z = 002;
+console.log(x + y + z); // Now it add's an octal
+
+
+
+
+
+
+// The 'with' statement
+var obj = {
+    a: {
+        b: {
+            c: 'hello'
+        }
+    }
+}
+
+console.log(obj.a.b.c);
+
+// prints out as expected
+var obj = {
+    a: {
+        b: {
+            c: 'hello'
+        }
+    }
+}
+
+with(obj.a.b) {
+  console.log(c);
+}
+
+
+// what prints out now?
+var obj = {
+    a: {
+        b: {
+            c: 'hello'
+        }
+    }
+}
+var c = "this is important";
+with(obj.a.b) {
+  console.log(c); // <-- what happens now?
+}
+
+
+'use strict';
+var obj = {
+    a: {
+        b: {
+            c: 'hello'
+        }
+    }
+}
+var c = "this is important";
+with(obj.a.b) { // <-- can't use the with statement
+  console.log(c);
+}
+
+
+// but what if I wanted to use something like with?
+'use strict';
+var obj = {
+    a: {
+        b: {
+            c: 'hello'
+        }
+    }
+}
+var c = "this is important";
+
+(function(newVar) {
+    console.log(newVar)
+}(obj.a.b.c))
+
+// or my prefered iife syntax
+(function(newVar) {
+    console.log(newVar.c)
+})(obj.a.b)
+
+
+
+
+
+// this - what is 'this' anyway?
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(obj.val);
+    }
+};
+
+obj.printVal();
+obj.val = 'Hi back';
+obj.printVal();
+
+
+// using this
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this.val); // because you won't usually know the variable name
+    }
+};
+
+obj.printVal();
+obj.val = 'Hi back';
+obj.printVal();
+
+
+// functions are first class objects
+// they can be passed around
+// create another object, but use the printVal from obj
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this.val); // because you won't usually know the variable name
+    }
+};
+var obj2 = {
+    val: 'Whats up'
+};
+obj2.printVal = obj.printVal;
+
+
+obj.printVal();
+obj.val = 'Hi back';
+obj.printVal();
+obj2.printVal();
+
+
+// let's learn something
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this.val);
+    }
+};
+var obj2 = {
+    val: 'Whats up'
+};
+obj2.printVal = obj.printVal;
+
+var printOut = obj.printVal;
+printOut(); // <-- we get undefined
+
+obj.printVal();
+obj.val = 'Hi back';
+obj.printVal();
+obj2.printVal();
+
+
+
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this);
+        console.log(this.val);
+    }
+};
+var obj2 = {
+    val: 'Whats up'
+};
+obj2.printVal = obj.printVal;
+
+// uncomment to see global scope
+//var printOut = obj.printVal;
+//printOut(); // <-- we get undefined
+
+obj.printVal();
+obj2.printVal();
+
+
+
+// use strict
+'use strict';
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this);
+        console.log(this.val); // <-- cannot read property val of undefined
+    }
+};
+var obj2 = {
+    val: 'Whats up'
+};
+obj2.printVal = obj.printVal;
+
+var printOut = obj.printVal;
+printOut();
+
+
+// using bind
+'use strict';
+var obj = {
+    val: 'Hi there',
+    printVal: function() {
+        console.log(this);
+        console.log(this.val); // <-- cannot read property val of undefined
+    }
+};
+var obj2 = {
+    val: 'Whats up'
+};
+obj2.printVal = obj.printVal;
+
+var printOut = obj.printVal.bind(obj2);
+printOut(); // <-- what's up
+
+// how the function is executed matters, not how it's created
+
+
+
+
+
+
+// New Object "this"
+var obj = function() {
+    this.hello = 'hello';
+    
+    this.greet = function() {
+        console.log(this.hello);
+    }
+    // implicit return this;
+}
+var greeter = new obj(); // <-- creates a new this scope
+var greeter = obj() // <-- global scope
+
+
+// play around with callback
+var obj = function() {
+    this.hello = 'hello';
+    
+    this.greet = function() {
+        console.log(this.hello);
+    }
+    
+    this.delayGreeting = function() {
+        // we have a new this... use bind
+        //setTimeout(this.greet, 1000);
+        setTimeout(this.greet.bind(this), 1000);
+    }
+}
+var greeter = new obj();
+greeter.delayGreeting();
+
+
+// bind can suck - using it every time - take a copy of this
+var obj = function() {
+    var _this = this;
+    _this.hello = 'hello';
+    
+    _this.greet = function() {
+        console.log(_this.hello);
+    };
+    
+    _this.delayGreeting = function() {
+        // we have a new this... use bind
+        setTimeout(_this.greet, 1000);
+    };
+};
+var greeter = new obj();
+greeter.delayGreeting();
+
+
+
+
