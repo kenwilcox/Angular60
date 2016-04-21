@@ -1,14 +1,17 @@
 var that = {
   is: {
+    
     a: {
-      test:'that.is.a.test'
+      test: 'that.is.a.test'
     },
+    
     not: {
       a: {
-        test:'that.is.not.a.test'
+        test: 'that.is.not.a.test'
       },
       funny: 'that.is.not.funny'
     },
-    funny: 'that.is.funny'    
+    
+    funny: 'that.is.funny'
   }
 }
