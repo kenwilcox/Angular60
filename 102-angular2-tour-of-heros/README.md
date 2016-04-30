@@ -22,5 +22,5 @@ and the second I ran
   npm run lite
 ```
 
-And everything worked for me
+And everything worked for me.
 
